@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import "./App.css";
 import { useEffect } from "react";
 import List from "./components/List";
 import Form from "./components/Form";
+export const FriendsContext = createContext({
+  friends: [],
+  addFriend: (friend) => {},
+});
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -10,7 +14,7 @@ function App() {
   useEffect(() => {
     const html = document.querySelector("html");
     html.dataset.theme = theme;
-  }, [theme]);
+  }, [theme]); // bsh ybedel theme
 
   const [friends, setFriends] = useState([]); // deconstructe l.friends chaque wahda
   function addFriend(friend) {
@@ -24,8 +28,15 @@ function App() {
         <h1>My Robots friends</h1>
         <button className="Light"> Light</button>
       </header>
-      <Form addFriend={addFriend} />
-      <List friends={friends} />
+      <FriendsContext.Provider
+        value={{
+          friends,
+          addFriend,
+        }}
+      >
+        <Form />
+        <List />
+      </FriendsContext.Provider>
     </>
   );
 }

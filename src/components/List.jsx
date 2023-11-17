@@ -1,5 +1,9 @@
+import { useContext } from "react";
 import "./List.css";
-const List = ({ friends }) => {
+import { FriendsContext } from "../App";
+
+const List = () => {
+  const { friends } = useContext(FriendsContext);
   // deconstruction kima hadi wela props
   return (
     <div>

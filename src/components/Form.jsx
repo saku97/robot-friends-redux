@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react"; //use context laachiya
 import "./Form.css";
-const Form = ({ addFriend }) => {
+import { FriendsContext } from "../App"; //importinaha
+const Form = () => {
   //addfriend is the prop
   const [value, setValue] = useState(""); //ndiro value besh  ygeneraw fel input
-
+  const { addFriend } = useContext(FriendsContext);
   return (
     <div>
       <h1>Add New Friend</h1>
