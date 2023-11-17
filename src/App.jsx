@@ -3,6 +3,8 @@ import "./App.css";
 import { useEffect } from "react";
 import List from "./components/List";
 import Form from "./components/Form";
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -24,8 +26,10 @@ function App() {
         <h1>My Robots friends</h1>
         <button className="Light"> Light</button>
       </header>
-      <Form addFriend={addFriend} />
-      <List friends={friends} />
+      <Provider store={store}>
+        <Form />
+        <List />
+      </Provider>
     </>
   );
 }
